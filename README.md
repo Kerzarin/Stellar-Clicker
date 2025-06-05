@@ -29,7 +29,7 @@
 ## 📦 Установка
 
 ```bash
-git clone https://github.com/ваш-username/stellar-clicker.git
+git clone https://github.com/Kerzarin/stellar-clicker.git
 cd stellar-clicker
 ```
 
@@ -53,7 +53,7 @@ cd stellar-clicker
 
 ## 📜 Лицензия
 
-MIT © [Kerzarin]
+MIT © Kerzarin
 
 ---
 
