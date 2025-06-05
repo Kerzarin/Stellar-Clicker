@@ -1,0 +1,56 @@
+[
+    {
+        "image": "images/upgrades/solar_panel.png",
+        "name": "СОЛНЕЧНЫЙ МАССИВ",
+        "curent_rank": "0",
+        "max_rank": "10",
+        "description": "Улавливает космическое излучение, преобразуя его в чистую энергию",
+        "effect": "+1.0 MW/s",
+        "cost": "800"
+    },
+    {
+        "image": "images/upgrades/energy_robot.png",
+        "name": "ЭНЕРГОДРОН",
+        "curent_rank": "0",
+        "max_rank": "10",
+        "description": "Автономный сборщик космической энергии с функцией самоулучшения",
+        "effect": "+2.0 MW/s",
+        "cost": "1200"
+    },
+    {
+        "image": "images/upgrades/quantum-reactor.png",
+        "name": "КВАНТОВЫЙ РЕАКТОР",
+        "curent_rank": "0",
+        "max_rank": "10",
+        "description": "Стабилизирует квантовые флуктуации, увеличивая генерацию энергии на",
+        "effect": "+3.0 MW/s",
+        "cost": "1500"
+    },
+    {
+        "image": "images/upgrades/alien_technology.png",
+        "name": "ИНОПЛАНЕТНЫЙ АРТЕФАКТ",
+        "curent_rank": "0",
+        "max_rank": "10",
+        "description": "Древний источник неизученной энергии с нестабильными показателями",
+        "effect": "+4.0 MW/s",
+        "cost": "3500"
+    },
+    {
+        "image": "images/upgrades/harvest.png",
+        "name": "УЛОВИТЕЛЬ ТУМАННОСТЕЙ",
+        "curent_rank": "0",
+        "max_rank": "10",
+        "description": "Извлекает энергию из межзвездных газовых облаков, увеличивая генерацию на",
+        "effect": "+5.0 MW/s",
+        "cost": "6000"
+    },
+    {
+      "image": "images/upgrades/black-hole-battery.png",
+      "name": "ЧЕРНОДЫРЧАТЫЙ АККУМУЛЯТОР",
+      "current_rank": "0",
+      "max_rank": "10",
+      "description": "Использует микросингулярность для хранения энергии",
+      "effect": "2 к базовому клику",
+      "cost": "12000"
+    }
+]

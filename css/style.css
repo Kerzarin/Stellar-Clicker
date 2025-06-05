@@ -1,0 +1,1098 @@
+/* Базовые стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+    color: #e0e0ff;
+    min-height: 100vh;
+    font-family: 'Orbitron', sans-serif;
+    overflow-x: hidden;
+    perspective: 1000px;
+}
+
+/* Анимации */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes pulsate {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes orbit {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes twinkle {
+    0% {
+        opacity: 0.2;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.2;
+    }
+}
+
+@keyframes shoot {
+    0% {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(-1000px) translateY(300px);
+        opacity: 0;
+    }
+}
+
+/* Фоновые элементы */
+.stars,
+.twinkling,
+.shooting-stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.stars {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><circle cx="10%" cy="15%" r="1" fill="white"/><circle cx="25%" cy="35%" r="1" fill="white"/><circle cx="75%" cy="25%" r="1.5" fill="white"/><circle cx="85%" cy="65%" r="1" fill="white"/><circle cx="15%" cy="75%" r="1.5" fill="white"/><circle cx="50%" cy="50%" r="1" fill="white"/><circle cx="90%" cy="10%" r="1" fill="white"/><circle cx="30%" cy="90%" r="1.5" fill="white"/></svg>') repeat;
+    z-index: -3;
+}
+
+.twinkling {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><circle cx="5%" cy="20%" r="1" fill="white"/><circle cx="30%" cy="40%" r="1" fill="white"/><circle cx="70%" cy="30%" r="1" fill="white"/><circle cx="80%" cy="70%" r="1" fill="white"/><circle cx="20%" cy="80%" r="1" fill="white"/><circle cx="55%" cy="55%" r="1" fill="white"/><circle cx="95%" cy="15%" r="1" fill="white"/><circle cx="35%" cy="95%" r="1" fill="white"/></svg>') repeat;
+    z-index: -2;
+    animation: twinkle 4s infinite;
+}
+
+.shooting-stars::before,
+.shooting-stars::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0), #fff);
+    animation: shoot 8s linear infinite;
+}
+
+.shooting-stars::before {
+    top: 20%;
+    left: 100%;
+    animation-delay: 0s;
+}
+
+.shooting-stars::after {
+    top: 60%;
+    left: 100%;
+    animation-delay: 3s;
+}
+
+/* Главное меню */
+.main-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    background: rgba(11, 13, 27, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.title-container {
+    position: relative;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.game-title {
+    font-size: 5rem;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: transparent;
+    background: linear-gradient(45deg, #6a9eff, #a66bf9, #ff6b6b);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: gradientShift 5s ease infinite;
+    margin: 0;
+    line-height: 1;
+}
+
+.clicker-title {
+    font-family: 'Rubik Mono One', sans-serif;
+    font-size: 6rem;
+    margin-top: -1rem;
+    letter-spacing: 8px;
+    text-shadow: 0 0 20px rgba(106, 158, 255, 0.5);
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.title-decoration {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.pulsar {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(106, 158, 255, 0.8), rgba(106, 158, 255, 0));
+    top: 30%;
+    left: 20%;
+    animation: pulsate 3s infinite;
+    filter: blur(1px);
+}
+
+.planet {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #a66bf9, #5a2d9c);
+    bottom: 20%;
+    right: 15%;
+    box-shadow: inset -10px -10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 2;
+}
+
+.neon-btn {
+    position: relative;
+    display: inline-block;
+    padding: 15px 40px;
+    margin: 10px 0;
+    color: #6a9eff;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 1.5rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    overflow: hidden;
+    transition: 0.5s;
+    background: rgba(15, 15, 30, 0.7);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(106, 158, 255, 0.3);
+}
+
+.neon-btn:hover {
+    color: #a66bf9;
+    background: rgba(166, 107, 249, 0.1);
+    box-shadow: 0 0 20px rgba(166, 107, 249, 0.5);
+}
+
+.neon-btn span {
+    position: absolute;
+    display: block;
+}
+
+.neon-btn span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #6a9eff);
+    animation: btn-anim1 2s linear infinite;
+}
+
+@keyframes btn-anim1 {
+    0% {
+        left: -100%;
+    }
+
+    50%,
+    100% {
+        left: 100%;
+    }
+}
+
+.neon-btn span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #6a9eff);
+    animation: btn-anim2 2s linear infinite;
+    animation-delay: 0.5s;
+}
+
+@keyframes btn-anim2 {
+    0% {
+        top: -100%;
+    }
+
+    50%,
+    100% {
+        top: 100%;
+    }
+}
+
+.neon-btn span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, #6a9eff);
+    animation: btn-anim3 2s linear infinite;
+    animation-delay: 1s;
+}
+
+@keyframes btn-anim3 {
+    0% {
+        right: -100%;
+    }
+
+    50%,
+    100% {
+        right: 100%;
+    }
+}
+
+.neon-btn span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #6a9eff);
+    animation: btn-anim4 2s linear infinite;
+    animation-delay: 1.5s;
+}
+
+@keyframes btn-anim4 {
+    0% {
+        bottom: -100%;
+    }
+
+    50%,
+    100% {
+        bottom: 100%;
+    }
+}
+
+.menu-decoration {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.satellite {
+    position: absolute;
+    width: 60px;
+    height: 30px;
+    background: #555;
+    border-radius: 15px;
+    top: 30%;
+    right: 10%;
+    animation: float 6s ease-in-out infinite;
+}
+
+.satellite::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 40px;
+    background: #777;
+    left: -10px;
+    top: -5px;
+}
+
+.satellite::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 10px;
+    background: #6a9eff;
+    right: -10px;
+    top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #6a9eff;
+}
+
+.ufo {
+    position: absolute;
+    width: 50px;
+    height: 20px;
+    background: #6a9eff;
+    border-radius: 50%;
+    bottom: 25%;
+    left: 15%;
+    animation: float 8s ease-in-out infinite 2s;
+    box-shadow: 0 0 15px rgba(106, 158, 255, 0.7);
+}
+
+.ufo::before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 10px;
+    background: rgba(106, 158, 255, 0.3);
+    bottom: -5px;
+    left: 10px;
+    border-radius: 50%;
+    filter: blur(3px);
+}
+
+/* Игровой интерфейс */
+.game-container {
+    display: block;
+    flex-direction: column;
+    height: 100vh;
+    padding: 20px;
+}
+
+.score-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    background: rgba(15, 15, 30, 0.7);
+    border: 1px solid rgba(106, 158, 255, 0.3);
+    box-shadow: 0 0 20px rgba(106, 158, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.holographic::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg,
+            rgba(106, 158, 255, 0.1),
+            rgba(166, 107, 249, 0.1),
+            rgba(106, 158, 255, 0.1));
+    z-index: -1;
+    filter: blur(20px);
+    opacity: 0.7;
+}
+
+.score-display,
+.per-second-display {
+    display: flex;
+    align-items: center;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.9rem;
+    color: #6a9eff;
+}
+
+.score-label,
+.per-second-label {
+    margin-right: 10px;
+    text-shadow: 0 0 5px rgba(106, 158, 255, 0.5);
+}
+
+.score-value,
+.per-second-value {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-right: 5px;
+}
+
+.energy-unit {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.console-btn {
+    position: relative;
+    padding: 10px 20px;
+    background: rgba(15, 15, 30, 0.8);
+    color: #6a9eff;
+    border: 1px solid #6a9eff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s;
+    overflow: hidden;
+}
+
+.console-btn:hover {
+    background: rgba(106, 158, 255, 0.2);
+    box-shadow: 0 0 15px rgba(106, 158, 255, 0.5);
+}
+
+.btn-light {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #6a9eff;
+    border-radius: 50%;
+    top: 5px;
+    left: 5px;
+    box-shadow: 0 0 5px 1px #6a9eff;
+    animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+    from {
+        opacity: 0.3;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Основная игровая область */
+.game-area {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.clicker-orbit {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.orbit-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px dashed rgba(106, 158, 255, 0.3);
+    border-radius: 50%;
+    animation: orbit 60s linear infinite;
+}
+
+.clicker-button {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #6a9eff, #3a5bc7);
+    border: none;
+    cursor: pointer;
+    position: relative;
+    box-shadow:
+        0 0 30px #6a9eff,
+        inset 0 0 20px rgba(255, 255, 255, 0.5);
+    transition: transform 0.1s;
+    z-index: 2;
+}
+
+.clicker-button:active {
+    transform: scale(0.95);
+}
+
+.core-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0));
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.clicker-button:hover .core-glow {
+    opacity: 0.3;
+}
+
+.clicker-icon {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.7));
+}
+
+.particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.particles::before,
+.particles::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    filter: blur(1px);
+    opacity: 0;
+}
+
+.particles::before {
+    top: 10%;
+    left: 10%;
+    animation: particle-float 3s infinite;
+}
+
+.particles::after {
+    bottom: 15%;
+    right: 10%;
+    animation: particle-float 4s infinite 1s;
+}
+
+@keyframes particle-float {
+    0% {
+        transform: translate(0, 0);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translate(20px, -30px);
+        opacity: 0;
+    }
+}
+
+.click-effect-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* Магазин улучшений */
+.shop-panel {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(15, 15, 30, 0.7);
+    border: 1px solid rgba(106, 158, 255, 0.3);
+    box-shadow: 0 0 20px rgba(106, 158, 255, 0.1);
+    position: relative;
+}
+
+.shop-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    color: #6a9eff;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(106, 158, 255, 0.5);
+    letter-spacing: 2px;
+}
+
+.terminal-screen {
+    position: relative;
+    background: url(/images/shop-background.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 1px solid #6a9eff;
+    border-radius: 5px;
+    padding: 15px;
+    overflow: hidden;
+}
+
+.scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(106, 158, 255, 0) 0%,
+            rgba(106, 158, 255, 0) 50%,
+            rgba(106, 158, 255, 0.03) 51%,
+            rgba(106, 158, 255, 0) 52%,
+            rgba(106, 158, 255, 0) 100%);
+    background-size: 100% 5px;
+    pointer-events: none;
+    animation: scanline 10s linear infinite;
+}
+
+@keyframes scanline {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 0 100%;
+    }
+}
+
+.upgrades-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.disabled {
+    display: none !important;
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 20, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.loading-spinner {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.spinner-sector {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 10px solid transparent;
+    mix-blend-mode: overlay;
+    animation: rotate var(--duration) var(--timing) infinite;
+    pointer-events: none;
+}
+
+.spinner-sector-1 {
+    --duration: 1.5s;
+    --timing: ease-in-out;
+    border-top-color: #6a9eff;
+}
+
+.spinner-sector-2 {
+    --duration: 2s;
+    --timing: ease-in;
+    border-left-color: #a66bf9;
+}
+
+.spinner-sector-3 {
+    --duration: 2.5s;
+    --timing: ease-out;
+    border-right-color: #ff6b6b;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-text {
+    margin-top: 20px;
+    font-family: 'Orbitron', sans-serif;
+    color: #6a9eff;
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        opacity: 0.5;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .game-title {
+        font-size: 3rem;
+    }
+
+    .clicker-title {
+        font-size: 4rem;
+    }
+
+    .clicker-orbit {
+        width: 250px;
+        height: 250px;
+    }
+
+    .clicker-button {
+        width: 120px;
+        height: 120px;
+    }
+
+    .score-panel {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .upgrades-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Стили для карточки улучшения */
+.upgrade-card {
+    position: relative;
+    background: rgba(20, 25, 50, 0.7);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(106, 158, 255, 0.2);
+}
+
+.card-border {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(106,158,255,0.3), rgba(166,107,249,0.3)) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.upgrade-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(106, 158, 255, 0.2);
+    border-color: rgba(106, 158, 255, 0.4);
+}
+
+.upgrade-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.upgrade-icon-container {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+}
+
+.upgrade-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(106, 158, 255, 0.7));
+    position: relative;
+    z-index: 2;
+}
+
+.icon-halo {
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: radial-gradient(circle, rgba(106,158,255,0.3), transparent 70%);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.upgrade-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    color: #6a9eff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-right: auto;
+}
+
+.upgrade-rank {
+    background: rgba(15, 20, 40, 0.8);
+    border: 1px solid #6a9eff;
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+    color: #fff;
+}
+
+.current-rank {
+    color: #6a9eff;
+}
+
+.rank-separator {
+    color: rgba(255,255,255,0.5);
+    margin: 0 3px;
+}
+
+.max-rank {
+    color: rgba(255,255,255,0.7);
+}
+
+.upgrade-description {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 15px;
+    min-height: 40px;
+}
+
+.effect-value {
+    color: #6a9eff;
+    font-weight: bold;
+}
+
+.upgrade-progress {
+    margin-bottom: 15px;
+}
+
+.progress-bar {
+    height: 4px;
+    background: linear-gradient(90deg, #6a9eff, #a66bf9);
+    border-radius: 2px;
+    margin-bottom: 5px;
+    position: relative;
+}
+
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: white;
+}
+
+.progress-pips {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pip {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(106, 158, 255, 0.3);
+}
+
+.pip.active {
+    background: #6a9eff;
+    box-shadow: 0 0 5px #6a9eff;
+}
+
+.upgrade-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.upgrade-cost {
+    display: flex;
+    align-items: center;
+    font-family: 'Orbitron', sans-serif;
+    color: #fff;
+}
+
+.cost-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+.cost-value {
+    font-size: 1.1rem;
+    margin-right: 3px;
+}
+
+.cost-unit {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.7);
+    align-self: flex-end;
+}
+
+.upgrade-button {
+    position: relative;
+    background: linear-gradient(135deg, #3a5bc7, #6a9eff);
+    border: none;
+    border-radius: 6px;
+    padding: 8px 15px;
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.upgrade-button:disabled {
+    background: linear-gradient(135deg, #333, #555);
+    color: rgba(255,255,255,0.5);
+    cursor: not-allowed;
+}
+
+.upgrade-button:not(:disabled):hover {
+    background: linear-gradient(135deg, #6a9eff, #a66bf9);
+    box-shadow: 0 0 15px rgba(106, 158, 255, 0.5);
+}
+
+.button-lock-icon {
+    margin-left: 8px;
+    font-size: 0.9rem;
+}
+
+.card-effects {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.effect-dots {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(rgba(106, 158, 255, 0.1) 1px, transparent 1px);
+    background-size: 10px 10px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.upgrade-card:hover .effect-dots {
+    opacity: 1;
+}
+
+.effect-glow {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    right: -50%;
+    bottom: -50%;
+    background: radial-gradient(circle at center, rgba(106, 158, 255, 0.1), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.upgrade-card:hover .effect-glow {
+    opacity: 1;
+}
+
+.upgrade-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 3;
+}
+
+.new-badge {
+    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+    color: white;
+    animation: pulse 1.5s infinite;
+}
+
+.discount-badge {
+    background: linear-gradient(135deg, #6bff6b, #8eff8e);
+    color: #005500;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}

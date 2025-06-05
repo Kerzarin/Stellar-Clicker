@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stellar Clicker | Space Clicker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Press+Start+2P&family=Rubik+Mono+One&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="icon" href="/images/energy-core.png">
+</head>
+
+<body>
+    <!-- Фоновые элементы -->
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    <div class="shooting-stars"></div>
+
+    <!-- Главное меню -->
+    <div class="main-menu animate__animated animate__fadeIn" id="mainMenu">
+        <div class="title-container">
+            <h1 class="game-title">STELLAR</h1>
+            <h1 class="game-title clicker-title">CLICKER</h1>
+            <div class="title-decoration">
+                <div class="pulsar"></div>
+                <div class="planet"></div>
+            </div>
+        </div>
+
+        <div class="menu-buttons">
+            <button class="menu-button neon-btn" id="startGameBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                ЗАПУСК
+            </button>
+            <button class="menu-button neon-btn" id="aboutBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                ГАЛАКТИЧЕСКАЯ СПРАВКА
+            </button>
+        </div>
+
+        <div class="menu-decoration">
+            <div class="satellite"></div>
+            <div class="ufo"></div>
+        </div>
+    </div>
+
+    <!-- Игровой интерфейс -->
+    <div class="game-container disabled" id="game-interface">
+        <!-- Верхняя панель -->
+        <div class="score-panel holographic">
+            <div class="score-display">
+                <span class="score-label">ENERGY:</span>
+                <span class="score-value" id="scoreValue">0</span>
+                <span class="energy-unit">MW</span>
+            </div>
+            <div class="per-second-display">
+                <span class="per-second-label">GENERATION:</span>
+                <span class="per-second-value" id="perSecondValue">0</span>
+                <span class="energy-unit">MW/s</span>
+            </div>
+            <button class="menu-button console-btn" id="menuBtn">
+                <div class="btn-light"></div>
+                MENU
+            </button>
+        </div>
+
+        <!-- Основная игровая область -->
+        <div class="game-area">
+            <div class="clicker-orbit">
+                <div class="orbit-ring"></div>
+                <button class="clicker-button pulsate" id="clickerButton">
+                    <div class="core-glow"></div>
+                    <img src="images/energy-core.png" alt="Энергетическое ядро" class="clicker-icon">
+                    <div class="particles"></div>
+                </button>
+            </div>
+            <div class="click-effect-container" id="clickEffects"></div>
+        </div>
+
+        <!-- Магазин улучшений -->
+        <div class="shop-panel holographic" id="shopPanel">
+            <h2 class="shop-title">UPGRADE TERMINAL</h2>
+            <div class="terminal-screen">
+                <div class="scanlines"></div>
+                <div class="upgrades-container" id="upgradesContainer">
+        
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Оверлей загрузки -->
+    <div class="loading-overlay">
+        <div class="loading-spinner">
+            <div class="spinner-sector spinner-sector-1"></div>
+            <div class="spinner-sector spinner-sector-2"></div>
+            <div class="spinner-sector spinner-sector-3"></div>
+            <div class="loading-text">INITIALIZING STELLAR CORE...</div>
+        </div>
+    </div>
+    <script src="/js/main.js" type="module"></script>
+</body>
+
+</html>
